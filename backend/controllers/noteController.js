@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Note = require("../models/noteModel");
+const User = require("../models/userModel");
 
 //This is to get notes
 //@route GET /api/goals @access PRIVATE
@@ -34,8 +35,22 @@ const updateNotes = asyncHandler(async (rq, rs) => {
     rs.status(400);
     throw new Error("note not found");
   }
+  const user = await User.findById(rq.user.id);
 
-  const updatedNote = await Note.findById(rq.params.id, rq.body, { new: true });
+  //checking for user
+  if (!user) {
+    rs.status(401);
+    throw new Error("User not found");
+  }
+
+  //checking if the same user is making the changes
+  if (note.user.toString() !== user.id) {
+    rs.status(401);
+    throw new Error("Not the same user");
+  }
+  const updatedNote = await Note.findByIdAndUpdate(rq.params.id, rq.body, {
+    new: true,
+  });
 
   rs.status(200).json(updatedNote);
 });
@@ -43,6 +58,27 @@ const updateNotes = asyncHandler(async (rq, rs) => {
 //This is to delete notes
 //@route DELETE /api/goals @access PRIVATE
 const deleteNotes = asyncHandler(async (rq, rs) => {
+  const note = await Note.findById(rq.params.id);
+
+  //no note is detected
+  if (!note) {
+    rs.status(400);
+    throw new Error("note not found!");
+  }
+
+  const user = await User.findById(rq.user.id);
+  //checking for user
+  if (!user) {
+    rs.status(401);
+    throw new Error("User not found");
+  }
+
+  //checking if the same user is making the changes
+  if (note.user.toString() !== user.id) {
+    rs.status(401);
+    throw new Error("Not the same user");
+  }
+
   await Note.remove();
   rs.status(200).json({ id: rq.params.id });
 });
