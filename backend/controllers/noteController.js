@@ -1,4 +1,5 @@
 const asyncHandler = require("express-async-handler");
+const Note = require("../models/noteModel");
 
 //This is to get notes
 //@route GET /api/goals @access PRIVATE
