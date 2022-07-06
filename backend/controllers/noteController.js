@@ -4,7 +4,7 @@ const Note = require("../models/noteModel");
 //This is to get notes
 //@route GET /api/goals @access PRIVATE
 const getNotes = asyncHandler(async (rq, rs) => {
-  const notes = await Note.find();
+  const notes = await Note.find({ user: rq.user.id });
   rs.status(200).json(notes);
 });
 
@@ -18,6 +18,7 @@ const setNotes = asyncHandler(async (rq, rs) => {
   const note = await Note.create({
     text: rq.body.text,
     title: rq.body.text,
+    user: rq.user.id,
   });
 
   rs.status(200).json(note);

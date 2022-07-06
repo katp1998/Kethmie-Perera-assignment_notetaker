@@ -57,6 +57,7 @@ const registerUser = asyncHandler(async (rq, rs) => {
       dateOfBirth: user.dateOfBirth,
       mobile: user.mobile,
       accountType: user.accountType,
+      token: generateToken(user.id),
     });
   } else {
     rs.status(400);
@@ -69,7 +70,10 @@ const loginUser = asyncHandler(async (rq, rs) => {
   const { email, password } = rq.body;
   const user = await User.findOne({ email });
   if (user && (await bcrypt.compare(password, user.password))) {
-    rs.json({ message: "logged in successfully!" });
+    rs.json({
+      message: "logged in successfully!",
+      token: generateToken(user._id),
+    });
   } else {
     rs.status(400);
     throw new Error("invalid credentials");
@@ -78,7 +82,35 @@ const loginUser = asyncHandler(async (rq, rs) => {
 
 //This is to get users - GET @route: /api/users/admin @access: PRIVATE --used by admin
 const getUserData = asyncHandler(async (rq, rs) => {
-  rs.json({ message: "Users!" });
+  const {
+    id,
+    firstName,
+    lastName,
+    email,
+    dateOfBirth,
+    mobile,
+    password,
+    accountType,
+    status,
+  } = await User.findById(rq.user.id);
+  rs.status(200).json({
+    id,
+    firstName,
+    lastName,
+    email,
+    dateOfBirth,
+    mobile,
+    password,
+    accountType,
+    status,
+  });
 });
+
+//generating JWT
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: "5d",
+  });
+};
 
 module.exports = { registerUser, loginUser, getUserData };
