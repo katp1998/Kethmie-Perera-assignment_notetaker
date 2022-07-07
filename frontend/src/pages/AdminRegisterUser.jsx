@@ -1,5 +1,10 @@
 import {useState, useEffect, React} from 'react'
-import {FaSignInAlt, FaSignOutAlt, FaUser} from 'react-icons/fa'
+import {FaUser} from 'react-icons/fa'
+import {useDispatch, useSelector} from 'react-redux'
+import {useNavigate} from 'react-router-dom'
+import {toast} from 'react-toastify'
+import {register, reset} from '../features/auth/authSlice'
+import Spinner from '../components/Spinner'
 
 function AdminRegisterUser() {
   const [formData, setFormData] = useState({
@@ -13,15 +18,52 @@ function AdminRegisterUser() {
   })
 
   const {firstName, lastName, email, dateOfBirth, mobile, accountType, password} = formData
+  
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-  const onChange = (e) =>{
+ const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  ) 
+  
+  useEffect(() => {
+    if (isError) {
+      toast.error(message)
+    }
+
+    if (isSuccess || user) {
+      navigate('/')
+    }else{
+      console.log("isSucess = false");
+    }
+
+  }, [user, isError, isSuccess, message, navigate, dispatch])
+
+  const onChange = (e) => {
     setFormData((prevState) => ({
-      ...prevState, [e.target.name]: e.target.value 
+      ...prevState,
+      [e.target.name]: e.target.value,
     }))
   }
 
   const onSubmit = (e) =>{
     e.preventDefault();
+
+    const userData = {
+      firstName,
+      lastName,
+      email,
+      dateOfBirth,
+      mobile,
+      accountType,
+      password
+    }
+    dispatch(register(userData))
+
+  }
+
+  if(isLoading){
+    return <Spinner />
   }
 
   return (
@@ -33,7 +75,7 @@ function AdminRegisterUser() {
       <p>Please add the below details to add a user</p>
     </section>
     <section className="form">
-      <form>
+      <form onSubmit={onSubmit}>
       <div className="form-group">
       <input type="text" className="form-control" id = 'firstName' name = 'firstName' value = {firstName} placeholder = "Enter first name" onChange={onChange}/>
       </div>
@@ -55,7 +97,7 @@ function AdminRegisterUser() {
       <div className="form-group">
       <input type="password" className="form-control" id = 'password' name = 'password' value = {password} placeholder = "Enter temporary password" onChange={onChange}/>
       </div>
-      <div onSubmit={onSubmit} className="form-group">
+      <div className="form-group">
         <button type='submit' className="btn btn-block">Register User</button>
       </div>
       </form>
