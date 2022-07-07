@@ -35,16 +35,15 @@ const updateNotes = asyncHandler(async (rq, rs) => {
     rs.status(400);
     throw new Error("note not found");
   }
-  const user = await User.findById(rq.user.id);
 
   //checking for user
-  if (!user) {
+  if (!rq.user) {
     rs.status(401);
     throw new Error("User not found");
   }
 
   //checking if the same user is making the changes
-  if (note.user.toString() !== user.id) {
+  if (note.user.toString() !== rq.user.id) {
     rs.status(401);
     throw new Error("Not the same user");
   }
@@ -66,15 +65,14 @@ const deleteNotes = asyncHandler(async (rq, rs) => {
     throw new Error("note not found!");
   }
 
-  const user = await User.findById(rq.user.id);
   //checking for user
-  if (!user) {
+  if (!rq.user) {
     rs.status(401);
     throw new Error("User not found");
   }
 
   //checking if the same user is making the changes
-  if (note.user.toString() !== user.id) {
+  if (note.user.toString() !== rq.user.id) {
     rs.status(401);
     throw new Error("Not the same user");
   }

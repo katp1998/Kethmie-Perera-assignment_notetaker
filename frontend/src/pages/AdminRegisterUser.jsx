@@ -32,10 +32,11 @@ function AdminRegisterUser() {
     }
 
     if (isSuccess || user) {
-      navigate('/')
+      navigate('/adminDashboard')
     }else{
       console.log("isSucess = false");
     }
+    dispatch(reset())
 
   }, [user, isError, isSuccess, message, navigate, dispatch])
 
@@ -59,6 +60,8 @@ function AdminRegisterUser() {
       password
     }
     dispatch(register(userData))
+
+    //method to send email to student with temporary password
 
   }
 

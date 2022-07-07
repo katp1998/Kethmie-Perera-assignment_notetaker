@@ -26,7 +26,11 @@ function Login() {
     }
 
     if (isSuccess || user) {
-      navigate('/')
+      if(user.accountType === 'Student'){
+        navigate('/studentDashboard')
+      }else{
+        navigate('/adminDashboard')
+      }
     }else{
       console.log("isSucess = false");
     }

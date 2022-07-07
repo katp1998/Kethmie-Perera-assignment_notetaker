@@ -14,7 +14,7 @@ const register = async (userData) => {
   return response.data;
 };
 
-// Login user
+// Login after first time
 const login = async (userData) => {
   const response = await axios.post(API_URL + "login", userData);
 
@@ -25,7 +25,7 @@ const login = async (userData) => {
   return response.data;
 };
 
-// Logout user
+// Logout
 const logout = () => {
   localStorage.removeItem("user");
 };

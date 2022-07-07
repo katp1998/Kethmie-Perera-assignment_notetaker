@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminRegisterUser from "./pages/AdminRegisterUser";
+import StudentDashboard from "./pages/StudentDashboard";
 import Login from "./pages/Login";
 import LoginOnce from "./pages/LoginOnce";
 
@@ -14,10 +15,11 @@ function App() {
         <div className="container">
           <Header />
           <Routes>
-            <Route path="/" element={<AdminDashboard />} />
+            <Route path="/adminDashboard" element={<AdminDashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registeruser" element={<AdminRegisterUser />} />
             <Route path="/firstlogin" element={<LoginOnce />} />
+            <Route path="/studentDashboard" element={<StudentDashboard />} />
           </Routes>
         </div>
       </Router>
