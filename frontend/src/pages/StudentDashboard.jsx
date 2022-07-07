@@ -5,6 +5,7 @@ import NoteForm from '../components/NoteForm'
 import NoteItem from '../components/NoteItem'
 import Spinner from '../components/Spinner'
 import { getNotes, reset } from '../features/notes/noteSlice'
+import CommonHeader from '../components/CommonHeader'
 
 function StudentDashboard() {
   const navigate = useNavigate()
@@ -37,6 +38,7 @@ function StudentDashboard() {
 
   return (
     <>
+    <CommonHeader />
       <section className='heading'>
         <h1>Welcome {user && user.name}</h1>
         <p>Student Dashboard</p>

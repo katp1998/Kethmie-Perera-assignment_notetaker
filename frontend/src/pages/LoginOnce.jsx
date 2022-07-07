@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { register, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
+import CommonHeader from '../components/CommonHeader'
 
 const LoginOnce = () => {
     const [formData, setFormData] = useState({
@@ -27,7 +28,7 @@ const LoginOnce = () => {
         }
     
         if (isSuccess || user) {
-          navigate('/')
+          navigate('/login')
         }else{
           console.log("isSucess = false");
         }
@@ -64,6 +65,7 @@ const LoginOnce = () => {
   
     return (
     <>
+    <CommonHeader />
     <section className="heading">
       <h1>
         <FaUser /> Reset Password

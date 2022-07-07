@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Header from "./components/Header";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminRegisterUser from "./pages/AdminRegisterUser";
 import StudentDashboard from "./pages/StudentDashboard";
@@ -13,7 +12,6 @@ function App() {
     <>
       <Router>
         <div className="container">
-          <Header />
           <Routes>
             <Route path="/adminDashboard" element={<AdminDashboard />} />
             <Route path="/login" element={<Login />} />

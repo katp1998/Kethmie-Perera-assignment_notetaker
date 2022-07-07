@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { login, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
+import CommonHeader from '../components/CommonHeader'
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -61,6 +62,7 @@ function Login() {
   }
   return (
     <>
+    <CommonHeader />
     <section className="heading">
       <h1>
         <FaSignInAlt /> Login
