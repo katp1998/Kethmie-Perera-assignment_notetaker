@@ -1,7 +1,7 @@
 //this is used to set the HTTP requests and responses
 import axios from "axios";
 
-const API_URL = "/api/users/";
+const API_URL = "/api/users";
 
 //registering user
 const register = async (userData) => {
