@@ -80,7 +80,7 @@ const loginUser = asyncHandler(async (rq, rs) => {
   }
 });
 
-//This is to get users - GET @route: /api/users/admin @access: PRIVATE --used by admin
+//This is to get users - GET @route: /api/users/admin @access: PUBLIC
 const getUserData = asyncHandler(async (rq, rs) => {
   rs.status(200).json(rq.user);
 });

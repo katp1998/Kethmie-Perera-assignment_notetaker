@@ -50,6 +50,7 @@ function AdminRegisterUser() {
 
   const onSubmit = (e) =>{
     e.preventDefault();
+    
 
     const userData = {
       firstName,
@@ -94,7 +95,7 @@ function AdminRegisterUser() {
       <input type="date" className="form-control" id = 'dateOfBirth' name = 'dateOfBirth' value = {dateOfBirth} onChange={onChange}/>
       </div>
       <div className="form-group">
-      <input type="text" className="form-control" id = 'mobile' name = 'mobile' value = {mobile} placeholder = "Enter mobile number" onChange={onChange}/>
+      <input type="number" className="form-control" id = 'mobile' name = 'mobile' value = {mobile} placeholder = "Enter mobile number" onChange={onChange}/>
       </div>
       <div className="form-group">
       <input type="text" className="form-control" id = 'accountType' name = 'accountType' value = {accountType} placeholder = "Enter account type -- Admin/Student" onChange={onChange}/>

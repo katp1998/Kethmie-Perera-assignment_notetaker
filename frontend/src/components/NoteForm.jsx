@@ -3,9 +3,11 @@ import { useDispatch} from 'react-redux'
 import { createNote } from '../features/notes/noteSlice'
 
 function NoteForm() {
-  const [text, title, setTitle, setText] = useState('')
+  const [formData, setFormData] = useState({title : '', text: " "})
 
   const dispatch = useDispatch()
+
+  const {title, text} = formData
 
   const onSubmit = (e) => {
     e.preventDefault()
