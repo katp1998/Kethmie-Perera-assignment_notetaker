@@ -19,3 +19,15 @@ Additional technologies used:
 Instructions to run application
 1. navigate to the root folder [kethmie-perera-assignment_notetake]
 2. type 'npm run both' on terminal
+
+WORKING USERS:
+LOGIN
+email: 35-se-0029@kdu.ac.lk
+pw: 123
+user: admin
+
+email: johndoe@gmail.com
+pw: 123
+user: student
+
+
