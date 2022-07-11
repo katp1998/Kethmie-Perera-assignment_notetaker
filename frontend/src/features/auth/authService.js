@@ -30,6 +30,8 @@ const logout = () => {
   localStorage.removeItem("user");
 };
 
+//verfiy which user type
+
 const authService = {
   register,
   logout,
