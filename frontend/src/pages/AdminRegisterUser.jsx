@@ -34,9 +34,8 @@ function AdminRegisterUser() {
 
     if (isSuccess || user) {
       navigate('/adminDashboard')
-    }else{
-      console.log("isSucess = false");
     }
+    
     dispatch(reset())
 
   }, [user, isError, isSuccess, message, navigate, dispatch])

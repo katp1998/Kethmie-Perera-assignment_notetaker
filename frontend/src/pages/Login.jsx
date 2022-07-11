@@ -27,13 +27,11 @@ function Login() {
     }
 
     if (isSuccess || user) {
-      if(user.accountType === 'Student'){
-        navigate('/studentDashboard')
-      }else{
+      //if(user.accountType === 'Student'){
         navigate('/adminDashboard')
-      }
-    }else{
-      console.log("isSucess = false");
+      //}else{
+      // navigate('/adminDashboard')
+      //}
     }
     dispatch(reset())
   }, [user, isError, isSuccess, message, navigate, dispatch])

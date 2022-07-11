@@ -68,7 +68,7 @@ const registerUser = asyncHandler(async (rq, rs) => {
 //This is to authenticate users - POST @route: /api/users/login @access: PUBLIC
 const loginUser = asyncHandler(async (rq, rs) => {
   const { email, password } = rq.body;
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email }); // --- cant make email addresses that are similar eg:
   if (user && (await bcrypt.compare(password, user.password))) {
     rs.json({
       message: "logged in successfully!",

@@ -9,12 +9,19 @@ function NoteForm() {
 
   const {title, text} = formData
 
+  const onChange = e =>{
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+  }))}
+
   const onSubmit = (e) => {
     e.preventDefault()
 
-    dispatch(createNote({ title, text}))
-    setTitle('')
-    setText('')
+    const userData = {title, text}
+
+    dispatch(createNote({userData}))
+    setFormData('')
   }
   return (
     <section className='form'>
@@ -26,17 +33,17 @@ function NoteForm() {
             name='title'
             id='title'
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={onChange}
           />
         </div>
         <div className='form-group'>
-          <label htmlFor='text'>Text</label>
+          <label htmlFor='textarea'>Text</label>
           <input
             type='text'
             name='text'
             id='text'
             value={text}
-            onChange={(e) => setText(e.target.value)}
+            onChange={onChange}
           />
         </div>
         <div className='form-group'>

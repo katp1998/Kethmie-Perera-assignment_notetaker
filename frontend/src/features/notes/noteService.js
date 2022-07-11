@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "/api/notes/";
+const API_URL = "/api/notes";
 
 // Create new note
 const createNote = async (noteTitle, noteText, token) => {
