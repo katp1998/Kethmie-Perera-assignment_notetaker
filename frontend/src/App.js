@@ -6,6 +6,7 @@ import AdminRegisterUser from "./pages/AdminRegisterUser";
 import StudentDashboard from "./pages/StudentDashboard";
 import Login from "./pages/Login";
 import LoginOnce from "./pages/LoginOnce";
+import WelcomePage from "./pages/WelcomePage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Router>
         <div className="container">
           <Routes>
+            <Route path="/" element={<WelcomePage />} />
             <Route path="/adminDashboard" element={<AdminDashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registeruser" element={<AdminRegisterUser />} />
