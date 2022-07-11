@@ -1,0 +1,21 @@
+-------------------------NOTETAKER APPLICATION-------------------------------
+
+This is a simple note taking application built using the MERN stack to admit two users --Admin and Student.
+
+Admin will have the following capabilities:
+- View exisiting users
+- Create new users
+
+Student will have the following capabilities:
+- Ability to take down notes, update them or delete them
+
+Additional technologies used:
+- Redux: for efficient state management
+- Axios: HTTP client
+- bcrypt: passcode hashing
+- JWT: authentication
+
+
+Instructions to run application
+1. navigate to the root folder [kethmie-perera-assignment_notetake]
+2. type 'npm run both' on terminal
